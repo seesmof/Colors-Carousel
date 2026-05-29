@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export enum Tab {
   Manual,
-  DaisyUI,
+  ShadCN,
 }
 
 interface HeaderProps {
@@ -21,10 +21,10 @@ const Header = ({ active }: HeaderProps) => {
         Manual
       </Link>
       <Link
-        className={`${CommonLinkStyles} ${active === Tab.DaisyUI ? "bg-slate-200" : ""}`}
+        className={`${CommonLinkStyles} ${active === Tab.ShadCN ? "bg-slate-200" : ""}`}
         href={"/lib"}
       >
-        From DaisyUI
+        From ShadCN
       </Link>
     </nav>
   );
