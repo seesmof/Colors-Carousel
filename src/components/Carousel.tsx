@@ -15,6 +15,7 @@ const Carousel = () => {
         onClick={() => {
           const prevIndex = index > 0 ? index - 1 : colors.length - 1;
           setIndex(prevIndex);
+          console.log(index);
 
           setColor(colors[index]);
         }}
@@ -27,6 +28,7 @@ const Carousel = () => {
         onClick={() => {
           const nextIndex = index < colors.length - 1 ? index + 1 : 0;
           setIndex(nextIndex);
+          console.log(index);
 
           setColor(colors[index]);
         }}
