@@ -1,4 +1,4 @@
-# Colors-Carousel-NextJS
+# Colors Carousel
 
 This is a simple app with a colors carousel component.
 
