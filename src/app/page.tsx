@@ -47,13 +47,14 @@ export default function Page() {
           <p className="text-lg text-stone-700">
             This is a simple app that features a slides carousel.
           </p>
+          {/* 
           <button
             className="bg-stone-100 p-2 rounded-md cursor-pointer active:scale-95"
             onClick={() => setIsMoving((moving) => !moving)}
           >
             Toggle automatic movement
           </button>
-          <p>{isMoving.toString()}</p>
+           */}
         </header>
         <main className="flex flex-row gap-3 items-center">
           <button
