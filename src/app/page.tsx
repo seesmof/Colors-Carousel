@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const colors: string[] = [
   "bg-red-600",
@@ -16,6 +16,28 @@ export default function Page() {
   const [index, setIndex] = useState<number>(0);
   const [color, setColor] = useState<string>(colors[index]);
   const [isMoving, setIsMoving] = useState<boolean>(false);
+
+  const previousSlide = () => {
+    const prevIndex = index > 0 ? index - 1 : colors.length - 1;
+    setIndex(prevIndex);
+    setColor(colors[prevIndex]);
+  };
+
+  const nextSlide = () => {
+    const nextIndex = index < colors.length - 1 ? index + 1 : 0;
+    setIndex(nextIndex);
+    setColor(colors[nextIndex]);
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key == "ArrowRight" || e.key == "ArrowUp") nextSlide();
+      else if (e.key == "ArrowLeft" || e.key == "ArrowDown") previousSlide();
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => removeEventListener("keydown", handleKeyDown);
+  }, [nextSlide, previousSlide]);
 
   return (
     <div className="min-h-screen bg-sky-50 flex items-center justify-center">
@@ -36,22 +58,14 @@ export default function Page() {
         <main className="flex flex-row gap-3 items-center">
           <button
             className="bg-stone-100 cursor-pointer select-none active:scale-95 p-3 rounded-md h-80"
-            onClick={() => {
-              const prevIndex = index > 0 ? index - 1 : colors.length - 1;
-              setIndex(prevIndex);
-              setColor(colors[prevIndex]);
-            }}
+            onClick={previousSlide}
           >
             Prev
           </button>
           <div className={`rounded-md ${color} h-80 flex-1`}></div>
           <button
             className="bg-stone-100 cursor-pointer select-none active:scale-95 p-3 rounded-md h-80"
-            onClick={() => {
-              const nextIndex = index < colors.length - 1 ? index + 1 : 0;
-              setIndex(nextIndex);
-              setColor(colors[nextIndex]);
-            }}
+            onClick={nextSlide}
           >
             Next
           </button>
