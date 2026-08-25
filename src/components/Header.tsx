@@ -5,28 +5,27 @@ export enum Tab {
   ShadCN,
 }
 
-interface HeaderProps {
-  active: Tab;
-}
+type HeaderProps = {
+  activeTab: Tab;
+};
 
-const CommonLinkStyles = "w-full text-center hover:bg-slate-200 h-full p-3";
+const commonLinkStyles: string = "w-full text-center hover:bg-slate-200 p-3";
 
-const Header = ({ active }: HeaderProps) => {
+export default function Header({ activeTab }: HeaderProps) {
   return (
     <nav className="rounded-md outline outline-slate-200 mb-5 flex flex-row justify-between">
       <Link
-        className={`${CommonLinkStyles} ${active === Tab.Manual ? "bg-slate-200" : ""}`}
+        className={`${commonLinkStyles} ${activeTab === Tab.Manual ? "bg-slate-200" : ""}`}
         href={"/"}
       >
         Manual
       </Link>
       <Link
-        className={`${CommonLinkStyles} ${active === Tab.ShadCN ? "bg-slate-200" : ""}`}
-        href={"/lib"}
+        className={`${commonLinkStyles} ${activeTab === Tab.ShadCN ? "bg-slate-200" : ""}`}
+        href={"/shadcn"}
       >
-        From ShadCN
+        Using ShadCN
       </Link>
     </nav>
   );
-};
-export default Header;
+}
